@@ -1,0 +1,12 @@
+<div class='card'>
+  
+  <button 
+    (click)='onClickCard(cardProvider.id)' 
+    [ngStyle]="flagForSelected && {'width': '40px'}">{{flagForSelected ? "X" : "Select Provider"}}
+  </button>
+
+  <p>{{cardProvider.name}}</p>
+  <p>{{cardProvider.address}}</p>
+  <p>{{cardProvider.phone | phoneNumber}}</p>
+  
+<div>

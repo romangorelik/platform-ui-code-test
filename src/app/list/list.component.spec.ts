@@ -1,11 +1,25 @@
 import { ListComponent } from './list.component';
 
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CardComponent } from '../card/card.component';
+import { PhoneNumberPipe } from '../phone-number.pipe';
+
 describe('ListComponent', () => {
   let component: ListComponent;
+  let fixture: ComponentFixture<ListComponent>;
 
-  beforeEach(() => {
-    component = new ListComponent();
-  });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ListComponent, CardComponent, PhoneNumberPipe ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+
+    localStorage.clear();
+    fixture.detectChanges();
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -13,6 +27,7 @@ describe('ListComponent', () => {
 
   describe('unselected providers', () => {
     it('should have an initial length of 3', () => {
+      localStorage.clear();
       expect(component.unselectedProviders.length).toEqual(3);
     });
 

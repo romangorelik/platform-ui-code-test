@@ -1,4 +1,27 @@
 <div class="list-container">
   <h2>Providers</h2>
-
+  
+  <div class='listSub'>
+    <div class='listComponent'>
+      <h1>UNSELECTED </h1>
+      <div class='cardComponent'>
+        <div class='cards' *ngIf='unselectedProviders.length > 0'>
+          <div *ngFor="let provider of unselectedProviders">
+            <app-card [updateList]='refreshParent' [flagForSelected]=false [cardProvider]="provider"></app-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class='listComponent'>
+      <h1>SELECTED </h1>
+      <div class='cardComponent'>
+        <div class='cards' *ngIf='selectedProviders.length > 0'>
+          <div *ngFor="let provider of selectedProviders">
+            <app-card [updateList]='refreshParent' [flagForSelected]=true [cardProvider]="provider"></app-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

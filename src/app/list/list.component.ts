@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-list',
@@ -7,30 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  public selectedProviders = [];
-  public unselectedProviders = [
-    {
-      id: '1',
-      name: 'John',
-      address: '123 Greenway Blvd',
-      phone: '8991234321'
-    },
-    {
-      id: '2',
-      name: 'Mary',
-      address: '443 Windwhisper Road',
-      phone: '2233211903'
-    },
-    {
-      id: '3',
-      name: 'Jason',
-      address: '9992 Pumpkin Hollow',
-      phone: '4343219384'
-    }
-  ];
+  public selectedProviders:any[] = [];
+  public unselectedProviders:any[] = [];
+  
 
-  constructor() {}
+  refreshParent = () => {
+    this.unselectedProviders = this.appData.getUnselectedProviderData();
+    this.selectedProviders = this.appData.getSelectedProviderData();
+  }
 
-  ngOnInit() {}
+  constructor(private appData:DataService) {}
 
+  ngOnInit() {
+    this.unselectedProviders = this.appData.onInitGetData('Unselected');
+    this.selectedProviders = this.appData.onInitGetData('Selected');
+  }
 }
